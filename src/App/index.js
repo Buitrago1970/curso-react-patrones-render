@@ -34,23 +34,28 @@ function App() {
   return (
     <React.Fragment>
 
-       <TodoHeader>
+       <TodoHeader loading={loading}>
           <TodoCounter 
           totalTodos={totalTodos}
           completedTodos={completedTodos} />
+          
           <TodoSearch 
           searchValue={searchValue}
-          setSearchValue={setSearchValue}/>
+          setSearchValue={setSearchValue}
+          loading={loading}/>
       </TodoHeader> 
       
       <TodoList
       error={error}
       loading={loading}
       searchedTodos={searchedTodos}
+      totalTodos={totalTodos}
 
       onError={() => <TodosError />}
       onLoanding={() => <TodosLoading />}
-      onEmpyTodos={() =>  <EmptyTodos />}
+      onEmpyTodos={() =>  <EmptyTodos message={'¡Crea tu primer TODO!😀'}/>}
+      onEmpySearchValue={() => <EmptyTodos message={'no encontramos resutados para'} searchValue={searchValue}/>}
+
 
       render={(todo => (
         <TodoItem
@@ -62,7 +67,7 @@ function App() {
         />
       ))}
       />
-      
+
       {openModal && (
         <Modal>
           <TodoForm addTodo={addTodo}
