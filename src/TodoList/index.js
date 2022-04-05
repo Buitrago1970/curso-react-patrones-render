@@ -9,7 +9,7 @@ function TodoList({error, loading, searchedTodos ,totalTodos,onError,onLoanding,
       {(!loading && totalTodos === 0) && onEmpyTodos()}
       {(totalTodos && !searchedTodos.length ) && onEmpySearchValue()}
       <ul>
-        {searchedTodos.map(render)}
+        {(!loading && totalTodos > 0) && searchedTodos.map(render)}
       </ul>
     </section>
   );

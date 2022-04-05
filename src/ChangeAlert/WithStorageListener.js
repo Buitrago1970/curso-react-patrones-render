@@ -5,7 +5,6 @@ export default function WithStorageListener(WrappedComponent) {
       const [storageChange, SetStoragechange] = React.useState(false)
 
     window.addEventListener('storage',()=>{
-        console.log('hubo cambios!!!');
         SetStoragechange(true)
     })
     const toogleShow =()=>{
