@@ -13,7 +13,7 @@ import { EmptyTodos } from '../EmptyTodos';
 import { TodoForm } from '../TodoForm';
 import { CreateTodoButton } from '../CreateTodoButton';
 import { Modal } from '../Modal';
-import {ChangeAlertWithStorageListener} from "../ChangeAlert"
+import {ChangeAlert} from "../ChangeAlert"
 
 
 function App() {
@@ -31,6 +31,7 @@ function App() {
     setSearchValue,
     addTodo, 
     sincronized,
+    btnAnimation
   } = UseTodoProvider();
 
   return (
@@ -52,17 +53,15 @@ function App() {
       loading={loading}
       searchedTodos={searchedTodos}
       totalTodos={totalTodos}
-
       onError={() => <TodosError />}
       onLoanding={() => <TodosLoading />}
       onEmpyTodos={() =>  <EmptyTodos message={'¡Crea tu primer TODO!😀'}/>}
-      onEmpySearchValue={() => <EmptyTodos message={'no encontramos resutados para'} searchValue={searchValue}/>}
-
-
+      onEmpySearchValue={() => <EmptyTodos message={`no encontramos resutados para "${searchValue}"`}/>}
       render={(todo => (
         <TodoItem
           key={todo.text}
           text={todo.text}
+          btnAnimation={btnAnimation}
           completed={todo.completed}
           onComplete={() => completeTodo(todo.text)}
           onDelete={() => deleteTodo(todo.text)}
@@ -80,7 +79,7 @@ function App() {
       <CreateTodoButton
         setOpenModal={setOpenModal}
       />
-      <ChangeAlertWithStorageListener sincronized={sincronized}/>
+      <ChangeAlert sincronized={sincronized}/>
     </React.Fragment>
   );
 }

@@ -2,12 +2,23 @@ body {
   margin: 0;
   padding: 0;
   background: #F2F4F5;
-  color: #1E1E1F;
+  color: #d3d3d3;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 }
 
 #root {
-  margin: 0 24px;
+  margin: 0;
   position: relative;
-  min-height: 100vh;
+  min-height: 130vh;
+  background-image: url(https://www.xtrafondos.com/descargar.php?id=3300&resolucion=3840x2160) ;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.h1-title{
+  color: white;
+  text-align: center;
+  font-weight: bold;
 }

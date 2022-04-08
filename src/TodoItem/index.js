@@ -9,6 +9,7 @@ function TodoItem(props) {
       <CompleteIcon
         completed={props.completed}
         onComplete={props.onComplete}
+        btnAnimation={props.btnAnimation}
       />
       <p
         className={`TodoItem-p ${props.completed && 'TodoItem-p--complete'}`}

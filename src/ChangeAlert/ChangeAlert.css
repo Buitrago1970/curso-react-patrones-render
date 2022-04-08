@@ -11,8 +11,8 @@
 }
 .container-info-alert{
     width: 100%;
-    background: #a1a1a1;
-    text-align: center;
+    background: #000000eb;
+        text-align: center;
     padding: 25px;
     border-radius: 5px;
     color: white;

@@ -1,29 +1,39 @@
 .TodoSearch {
-  background: #F9FBFC;
+  background: #0000002d;
   border-radius: 2px;
-  border: 2px solid #202329;
-  margin: 0 24px;
+  border: 1px solid #272920;
+  margin: 10px 24px;
   height: 64px;
-  width: calc(100% - 62px);
+  width: calc(65% - 62px);
   font-size: 24px;
   text-align: center;
   font-family: 'Montserrat';
   font-weight: 400;
-  color: #1E1E1F;
+  color: #ffffff;
   box-shadow: 0px 5px 50px rgba(32, 35, 41, 0.25);
+  border-radius: 5px;
 }
 
 .TodoSearch::placeholder {
-  color: #A5A5A5;
+  color: #e1e1e1;
   font-family: 'Montserrat';
   font-weight: 400;
 }
-
-.TodoSearch:focus {
-  outline-color: #61DAFA;
-}
 .TodoSearch:disabled{
-  background: #d6d6d6;
+  background: linear-gradient(90deg, rgba(211, 211, 211, 0.5), #4a4a4a61);
   color: transparent ;
+  background-size: 400% 400%;
+  animation: loadingAnimation 3s ease-in-out infinite;
+}
 
+@keyframes loadingAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }

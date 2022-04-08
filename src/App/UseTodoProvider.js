@@ -13,6 +13,8 @@ function UseTodoProvider(props) {
 
   const [searchValue, setSearchValue] = React.useState('');
   const [openModal, setOpenModal] = React.useState(false);
+  const [btnAnimation, setBtnAnimation]  = React.useState('')
+
 
   const completedTodos = todos.filter(todo => todo.completed).length;
   const totalTodos = todos.length;
@@ -39,6 +41,7 @@ function UseTodoProvider(props) {
   };
 
   const completeTodo = (text) => {
+    setBtnAnimation('onclic')
     const todoIndex = todos.findIndex(todo => todo.text === text);
     const newTodos = [...todos];
     newTodos[todoIndex].completed = true;
@@ -66,7 +69,8 @@ function UseTodoProvider(props) {
       deleteTodo,
       openModal,
       setOpenModal,
-      sincronized
+      sincronized,
+      btnAnimation
     }
   );
 }
