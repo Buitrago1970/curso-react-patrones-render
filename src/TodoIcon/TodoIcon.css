@@ -16,9 +16,10 @@
 }
 .Icon-svg--check{
  width: 22px;
+ fill: rgba(76, 175, 79, 0.855);
 }
 .Icon-container:hover .Icon-svg--check {
-  fill: #4caf50;
+  fill: #1fe225;
 }
 .Icon-container:hover .Icon-svg--delete {
   fill: red;
