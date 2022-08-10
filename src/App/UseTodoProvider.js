@@ -13,12 +13,11 @@ function UseTodoProvider(props) {
 
   const [searchValue, setSearchValue] = React.useState('');
   const [openModal, setOpenModal] = React.useState(false);
-  const [btnAnimation, setBtnAnimation]  = React.useState('')
+  const [btnAnimation, setBtnAnimation] = React.useState('')
 
 
   const completedTodos = todos.filter(todo => todo.completed).length;
   const totalTodos = todos.length;
-
   let searchedTodos = [];
 
   if (!searchValue.length >= 1) {
@@ -54,9 +53,9 @@ function UseTodoProvider(props) {
     newTodos.splice(todoIndex, 1);
     saveTodos(newTodos);
   };
-  
+
   return (
-   {
+    {
       loading,
       error,
       totalTodos,
@@ -75,4 +74,4 @@ function UseTodoProvider(props) {
   );
 }
 
-export { UseTodoProvider};
+export { UseTodoProvider };

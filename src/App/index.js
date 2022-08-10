@@ -2,7 +2,7 @@ import React from 'react';
 
 
 import { UseTodoProvider } from './UseTodoProvider';
-import {TodoHeader} from '../TodoHeader'
+import { TodoHeader } from '../TodoHeader'
 import { TodoCounter } from '../TodoCounter';
 import { TodoSearch } from '../TodoSearch';
 import { TodoList } from '../TodoList';
@@ -13,7 +13,7 @@ import { EmptyTodos } from '../EmptyTodos';
 import { TodoForm } from '../TodoForm';
 import { CreateTodoButton } from '../CreateTodoButton';
 import { Modal } from '../Modal';
-import {ChangeAlert} from "../ChangeAlert"
+import { ChangeAlert } from "../ChangeAlert"
 
 
 function App() {
@@ -29,58 +29,58 @@ function App() {
     completedTodos,
     searchValue,
     setSearchValue,
-    addTodo, 
+    addTodo,
     sincronized,
     btnAnimation
   } = UseTodoProvider();
 
   return (
-    <React.Fragment>
+    <>
 
-       <TodoHeader loading={loading}>
-          <TodoCounter 
+      <TodoHeader loading={loading}>
+        <TodoCounter
           totalTodos={totalTodos}
           completedTodos={completedTodos} />
-          
-          <TodoSearch 
+
+        <TodoSearch
           searchValue={searchValue}
           setSearchValue={setSearchValue}
-          loading={loading}/>
-      </TodoHeader> 
-      
-      <TodoList
-      error={error}
-      loading={loading}
-      searchedTodos={searchedTodos}
-      totalTodos={totalTodos}
-      onError={() => <TodosError />}
-      onLoanding={() => <TodosLoading />}
-      onEmpyTodos={() =>  <EmptyTodos message={'¡Crea tu primer TODO!😀'}/>}
-      onEmpySearchValue={() => <EmptyTodos message={`no encontramos resutados para "${searchValue}"`}/>}
-      render={(todo => (
-        <TodoItem
-          key={todo.text}
-          text={todo.text}
-          btnAnimation={btnAnimation}
-          completed={todo.completed}
-          onComplete={() => completeTodo(todo.text)}
-          onDelete={() => deleteTodo(todo.text)}
         />
-      ))}
+      </TodoHeader>
+
+      <TodoList
+        error={error}
+        loading={loading}
+        searchedTodos={searchedTodos}
+        totalTodos={totalTodos}
+        onError={() => <TodosError />}
+        onLoanding={() => <TodosLoading />}
+        onEmpyTodos={() => <EmptyTodos message={'¡Crea tu primer TODO!😀'} />}
+        onEmpySearchValue={() => <EmptyTodos message={`no encontramos resutados para "${searchValue}"`} />}
+        render={(todo => (
+          <TodoItem
+            key={todo.text}
+            text={todo.text}
+            btnAnimation={btnAnimation}
+            completed={todo.completed}
+            onComplete={() => completeTodo(todo.text)}
+            onDelete={() => deleteTodo(todo.text)}
+          />
+        ))}
       />
 
       {openModal && (
         <Modal>
           <TodoForm addTodo={addTodo}
-          setOpenModal={setOpenModal}/>
+            setOpenModal={setOpenModal} />
         </Modal>
       )}
 
       <CreateTodoButton
         setOpenModal={setOpenModal}
       />
-      <ChangeAlert sincronized={sincronized}/>
-    </React.Fragment>
+      <ChangeAlert sincronized={sincronized} />
+    </>
   );
 }
 

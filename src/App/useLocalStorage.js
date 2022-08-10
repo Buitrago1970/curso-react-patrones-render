@@ -1,31 +1,86 @@
-import React from 'react';
+import React, { useReducer } from 'react';
+
+
+const initialState = (initalValue) => ({
+  item: initalValue,
+  error: false,
+  loading: true,
+  sincronizedItem: true
+})
+
+const actionTypes = {
+  success: 'SUCCESS',
+  error: "ERROR",
+  loading: 'LOADING',
+  save: 'SAVE',
+  sincronized: 'SINCRONIDED'
+}
+
+const reducerObject = (state, payload) => ({
+  [actionTypes.success]: {
+    ...state,
+    item: payload,
+    loading: false,
+    sincronizedItem: true,
+  },
+  [actionTypes.error]: {
+    ...state,
+    error: payload
+  },
+  [actionTypes.save]: {
+    ...state,
+    item: payload
+  },
+  [actionTypes.sincronized]: {
+    ...state,
+    loading: true,
+    sincronizedItem: false
+  }
+
+})
+
+const reducer = (state, action) => {
+  return reducerObject(state, action.payload)[action.type] || state
+}
 
 function useLocalStorage(itemName, initialValue) {
+  // hook reducer
+  const [state, dispatch] = useReducer(reducer, initialState(initialValue))
+  // STATE
+  const {
+    item,
+    loading,
+    error,
+    sincronizedItem
+  } = state
 
-  const [error, setError] = React.useState(false);
-  const [loading, setLoading] = React.useState(true);
-  const [item, setItem] = React.useState(initialValue);
-  const [sincronizedItem, setSincronizedItem] = React.useState(true)
-
+  const onSuccess = (item) => {
+    dispatch({ type: actionTypes.success, payload: item })
+  }
+  const onError = (error) => {
+    dispatch({ type: actionTypes.error, payload: error })
+  }
+  const onSave = (newItem) => {
+    dispatch({ type: actionTypes.save, payload: newItem })
+  }
+  const onSincronized = () => {
+    dispatch({ type: actionTypes.sincronized })
+  }
 
   React.useEffect(() => {
     setTimeout(() => {
       try {
         const localStorageItem = localStorage.getItem(itemName);
         let parsedItem;
-
         if (!localStorageItem) {
           localStorage.setItem(itemName, JSON.stringify(initialValue));
           parsedItem = initialValue;
         } else {
           parsedItem = JSON.parse(localStorageItem);
         }
-
-        setItem(parsedItem);
-        setLoading(false);
-        setSincronizedItem(true)
+        onSuccess(parsedItem)
       } catch (error) {
-        setError(error);
+        onError(error)
       }
     }, 2000);
   }, [sincronizedItem]);
@@ -34,15 +89,13 @@ function useLocalStorage(itemName, initialValue) {
     try {
       const stringifiedItem = JSON.stringify(newItem);
       localStorage.setItem(itemName, stringifiedItem);
-      setItem(newItem);
+      onSave(newItem)
     } catch (error) {
-      setError(error);
+      onError(error)
     }
   };
-
   const sincronized = () => {
-    setLoading(true)
-    setSincronizedItem(false)
+    onSincronized()
   }
   return {
     item,
