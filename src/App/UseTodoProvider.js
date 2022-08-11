@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocalStorage } from './useLocalStorage';
 
 
-function UseTodoProvider(props) {
+function UseTodoProvider() {
   const {
     item: todos,
     saveItem: saveTodos,
@@ -54,24 +54,29 @@ function UseTodoProvider(props) {
     saveTodos(newTodos);
   };
 
-  return (
-    {
-      loading,
-      error,
-      totalTodos,
-      completedTodos,
-      searchValue,
-      setSearchValue,
-      searchedTodos,
-      addTodo,
-      completeTodo,
-      deleteTodo,
-      openModal,
-      setOpenModal,
-      sincronized,
-      btnAnimation
-    }
-  );
+  const state = {
+    error,
+    loading,
+    openModal,
+    btnAnimation,
+    searchValue,
+    sincronized,
+    searchedTodos,
+    totalTodos,
+  }
+  const stateUpdaters = {
+    completeTodo,
+    addTodo,
+    completedTodos,
+    deleteTodo,
+    setOpenModal,
+    setSearchValue,
+  }
+
+  return {
+    state,
+    stateUpdaters
+  }
 }
 
 export { UseTodoProvider };

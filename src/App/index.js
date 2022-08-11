@@ -1,5 +1,5 @@
-import React from 'react';
 
+import React from 'react';
 
 import { UseTodoProvider } from './UseTodoProvider';
 import { TodoHeader } from '../TodoHeader'
@@ -18,25 +18,29 @@ import { ChangeAlert } from "../ChangeAlert"
 
 function App() {
   const {
-    error,
-    loading,
-    searchedTodos,
-    completeTodo,
-    deleteTodo,
-    openModal,
-    setOpenModal,
-    totalTodos,
-    completedTodos,
-    searchValue,
-    setSearchValue,
-    addTodo,
-    sincronized,
-    btnAnimation
+    state,
+    stateUpdaters
   } = UseTodoProvider();
+
+  const { error,
+    loading,
+    openModal,
+    btnAnimation,
+    searchValue,
+    sincronized,
+    searchedTodos,
+    totalTodos, } = state
+  const {
+    completeTodo,
+    addTodo,
+    completedTodos,
+    deleteTodo,
+    setOpenModal,
+    setSearchValue,
+  } = stateUpdaters
 
   return (
     <>
-
       <TodoHeader loading={loading}>
         <TodoCounter
           totalTodos={totalTodos}
