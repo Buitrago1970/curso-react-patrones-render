@@ -1,24 +1,18 @@
 body {
   margin: 0;
   padding: 0;
-  background: #F2F4F5;
+  background: #f2f4f5;
   color: #d3d3d3;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 #root {
   margin: 0;
   position: relative;
-  min-height: 130vh;
-  background-image: url(https://www.xtrafondos.com/descargar.php?id=3300&resolucion=3840x2160) ;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
 }
 
-.h1-title{
-  color: white;
+.h1-title {
+  color: rgb(106, 106, 106);
   text-align: center;
   font-weight: bold;
 }

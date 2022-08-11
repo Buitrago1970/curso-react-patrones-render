@@ -59,7 +59,7 @@ function App() {
         totalTodos={totalTodos}
         onError={() => <TodosError />}
         onLoanding={() => <TodosLoading />}
-        onEmpyTodos={() => <EmptyTodos message={'¡Crea tu primer TODO!😀'} />}
+        onEmpyTodos={() => <EmptyTodos message={'¡Crea tu primer TODO! 😀'} />}
         onEmpySearchValue={() => <EmptyTodos message={`no encontramos resutados para "${searchValue}"`} />}
         render={(todo => (
           <TodoItem

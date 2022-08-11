@@ -3,9 +3,9 @@
   text-align: center;
   margin: 0;
   padding: 48px;
-  color: rgb(237, 237, 237);
+  color: rgb(106, 106, 106);
   font-weight: 300;
 }
-.TodoCounter--loading{
+.TodoCounter--loading {
   opacity: 40%;
 }

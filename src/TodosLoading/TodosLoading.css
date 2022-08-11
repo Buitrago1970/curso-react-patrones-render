@@ -1,40 +1,32 @@
 .LoadingTodo-container {
   position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   margin-top: 24px;
   padding: 0px 20px;
   box-shadow: 0px 5px 50px rgb(32 35 41 / 15%);
+  height: 50px;
+  padding: 10px;
 }
 
 .LoadingTodo-text {
-  margin: 24px 0 24px 24px;
-  width: calc(100% - 120px);
-  font-size: 18px;
-  line-height: 24px;
-  font-weight: 400;
+  border-radius: 2px;
+  height: 48px;
+  width: 70%;
+  background: linear-gradient(90deg, rgba(211, 211, 211, 0.5), #4a4a4a2b);
 }
 
 .LoadingTodo-completeIcon,
 .LoadingTodo-deleteIcon {
-  border-radius: 50px;
-  height: 48px;
-  width: 48px;
+  border-radius: 15px;
+  height: 30px;
+  width: 30px;
 }
-
-.LoadingTodo-completeIcon {
-
-}
-
-.LoadingTodo-deleteIcon {
-
-}
-
 .LoadingTodo-container,
 .LoadingTodo-completeIcon,
 .LoadingTodo-deleteIcon {
-  background: linear-gradient(90deg, rgba(211, 211, 211, 0.5), #4a4a4a61);
+  background: linear-gradient(90deg, rgba(211, 211, 211, 0.5), #4a4a4a2b);
   background-size: 400% 400%;
   animation: loadingAnimation 3s ease-in-out infinite;
 }
