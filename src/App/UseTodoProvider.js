@@ -1,6 +1,5 @@
-import React from 'react';
-import { useLocalStorage } from './useLocalStorage';
-
+import React from "react";
+import { useLocalStorage } from "./useLocalStorage";
 
 function UseTodoProvider() {
   const {
@@ -8,22 +7,21 @@ function UseTodoProvider() {
     saveItem: saveTodos,
     loading,
     error,
-    sincronized
-  } = useLocalStorage('TODOS_V1', []);
+    sincronized,
+  } = useLocalStorage("TODOS_V1", []);
 
-  const [searchValue, setSearchValue] = React.useState('');
+  const [searchValue, setSearchValue] = React.useState("");
   const [openModal, setOpenModal] = React.useState(false);
-  const [btnAnimation, setBtnAnimation] = React.useState('')
+  const [btnAnimation, setBtnAnimation] = React.useState("");
 
-
-  const completedTodos = todos.filter(todo => todo.completed).length;
+  const completedTodos = todos.filter((todo) => todo.completed).length;
   const totalTodos = todos.length;
   let searchedTodos = [];
 
   if (!searchValue.length >= 1) {
     searchedTodos = todos;
   } else {
-    searchedTodos = todos.filter(todo => {
+    searchedTodos = todos.filter((todo) => {
       const todoText = todo.text.toLowerCase();
       const searchText = searchValue.toLowerCase();
       return todoText.includes(searchText);
@@ -40,15 +38,15 @@ function UseTodoProvider() {
   };
 
   const completeTodo = (text) => {
-    setBtnAnimation('onclic')
-    const todoIndex = todos.findIndex(todo => todo.text === text);
+    setBtnAnimation("onclic");
+    const todoIndex = todos.findIndex((todo) => todo.text === text);
     const newTodos = [...todos];
     newTodos[todoIndex].completed = true;
     saveTodos(newTodos);
   };
 
   const deleteTodo = (text) => {
-    const todoIndex = todos.findIndex(todo => todo.text === text);
+    const todoIndex = todos.findIndex((todo) => todo.text === text);
     const newTodos = [...todos];
     newTodos.splice(todoIndex, 1);
     saveTodos(newTodos);
@@ -63,7 +61,7 @@ function UseTodoProvider() {
     sincronized,
     searchedTodos,
     totalTodos,
-  }
+  };
   const stateUpdaters = {
     completeTodo,
     addTodo,
@@ -71,12 +69,12 @@ function UseTodoProvider() {
     deleteTodo,
     setOpenModal,
     setSearchValue,
-  }
+  };
 
   return {
     state,
-    stateUpdaters
-  }
+    stateUpdaters,
+  };
 }
 
 export { UseTodoProvider };
