@@ -1,24 +1,20 @@
-import React from 'react';
-import { CompleteIcon } from '../TodoIcon/CompleteIcon';
-import { DeleteIcon } from '../TodoIcon/DeleteIcon';
-import './TodoItem.css';
+import React from "react";
+import { CompleteIcon } from "../TodoIcon/CompleteIcon";
+import { DeleteIcon } from "../TodoIcon/DeleteIcon";
+import "./TodoItem.css";
 
-function TodoItem(props) {
+function TodoItem({ completed, onComplete, btnAnimation, text, onDelete }) {
   return (
     <li className="TodoItem">
       <CompleteIcon
-        completed={props.completed}
-        onComplete={props.onComplete}
-        btnAnimation={props.btnAnimation}
+        completed={completed}
+        onComplete={onComplete}
+        btnAnimation={btnAnimation}
       />
-      <p
-        className={`TodoItem-p ${props.completed && 'TodoItem-p--complete'}`}
-      >
-        {props.text}
+      <p className={`TodoItem-p ${completed ? "TodoItem-p--complete" : ""}`}>
+        {text}
       </p>
-      <DeleteIcon
-        onDelete={props.onDelete}
-      />
+      <DeleteIcon onDelete={onDelete} />
     </li>
   );
 }

@@ -1,9 +1,8 @@
-import React from 'react';
-import './TodoForm.css';
+import React from "react";
+import "./TodoForm.css";
 
 function TodoForm({ addTodo, setOpenModal }) {
-  const [newTodoValue, setNewTodoValue] = React.useState('');
-
+  const [newTodoValue, setNewTodoValue] = React.useState("");
 
   const onChange = (event) => {
     setNewTodoValue(event.target.value);
@@ -13,17 +12,22 @@ function TodoForm({ addTodo, setOpenModal }) {
   };
   const onSubmit = (event) => {
     event.preventDefault();
+
+    if (newTodoValue.trim() === "") {
+      return;
+    }
     addTodo(newTodoValue);
     setOpenModal(false);
   };
 
   return (
     <form onSubmit={onSubmit}>
-      <label>✍︎ Escribe tu nuevo TODO</label>
+      <label htmlFor="new-todo-input">✍︎ Escribe tu nuevo TODO</label>
       <textarea
         value={newTodoValue}
         onChange={onChange}
         placeholder="Crea tu primer ToDo"
+        id="new-todo-input"
       />
       <div className="TodoForm-buttonContainer">
         <button
@@ -33,10 +37,7 @@ function TodoForm({ addTodo, setOpenModal }) {
         >
           Cancelar
         </button>
-        <button
-          type="submit"
-          className="TodoForm-button TodoForm-button--add"
-        >
+        <button type="submit" className="TodoForm-button TodoForm-button--add">
           Añadir
         </button>
       </div>

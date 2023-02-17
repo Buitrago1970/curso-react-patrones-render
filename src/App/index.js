@@ -1,35 +1,32 @@
+import React from "react";
 
-import React from 'react';
-
-import { UseTodoProvider } from './UseTodoProvider';
-import { TodoHeader } from '../TodoHeader'
-import { TodoCounter } from '../TodoCounter';
-import { TodoSearch } from '../TodoSearch';
-import { TodoList } from '../TodoList';
-import { TodoItem } from '../TodoItem';
-import { TodosError } from '../TodosError';
-import { TodosLoading } from '../TodosLoading';
-import { EmptyTodos } from '../EmptyTodos';
-import { TodoForm } from '../TodoForm';
-import { CreateTodoButton } from '../CreateTodoButton';
-import { Modal } from '../Modal';
-import { ChangeAlert } from "../ChangeAlert"
-
+import { UseTodoProvider } from "./UseTodoProvider";
+import { TodoHeader } from "../TodoHeader";
+import { TodoCounter } from "../TodoCounter";
+import { TodoSearch } from "../TodoSearch";
+import { TodoList } from "../TodoList";
+import { TodoItem } from "../TodoItem";
+import { TodosError } from "../TodosError";
+import { TodosLoading } from "../TodosLoading";
+import { EmptyTodos } from "../EmptyTodos";
+import { TodoForm } from "../TodoForm";
+import { CreateTodoButton } from "../CreateTodoButton";
+import { Modal } from "../Modal";
+import { ChangeAlert } from "../ChangeAlert";
 
 function App() {
-  const {
-    state,
-    stateUpdaters
-  } = UseTodoProvider();
+  const { state, stateUpdaters } = UseTodoProvider();
 
-  const { error,
+  const {
+    error,
     loading,
     openModal,
     btnAnimation,
     searchValue,
     sincronized,
     searchedTodos,
-    totalTodos, } = state
+    totalTodos,
+  } = state;
   const {
     completeTodo,
     addTodo,
@@ -37,19 +34,14 @@ function App() {
     deleteTodo,
     setOpenModal,
     setSearchValue,
-  } = stateUpdaters
+  } = stateUpdaters;
 
   return (
     <>
       <TodoHeader loading={loading}>
-        <TodoCounter
-          totalTodos={totalTodos}
-          completedTodos={completedTodos} />
+        <TodoCounter totalTodos={totalTodos} completedTodos={completedTodos} />
 
-        <TodoSearch
-          searchValue={searchValue}
-          setSearchValue={setSearchValue}
-        />
+        <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
       </TodoHeader>
 
       <TodoList
@@ -59,9 +51,13 @@ function App() {
         totalTodos={totalTodos}
         onError={() => <TodosError />}
         onLoanding={() => <TodosLoading />}
-        onEmpyTodos={() => <EmptyTodos message={'¡Crea tu primer TODO! 😀'} />}
-        onEmpySearchValue={() => <EmptyTodos message={`no encontramos resutados para "${searchValue}"`} />}
-        render={(todo => (
+        onEmpyTodos={() => <EmptyTodos message={"¡Crea tu primer TODO! 😀"} />}
+        onEmpySearchValue={() => (
+          <EmptyTodos
+            message={`no encontramos resutados para "${searchValue}"`}
+          />
+        )}
+        render={(todo) => (
           <TodoItem
             key={todo.text}
             text={todo.text}
@@ -70,19 +66,16 @@ function App() {
             onComplete={() => completeTodo(todo.text)}
             onDelete={() => deleteTodo(todo.text)}
           />
-        ))}
+        )}
       />
 
       {openModal && (
         <Modal>
-          <TodoForm addTodo={addTodo}
-            setOpenModal={setOpenModal} />
+          <TodoForm addTodo={addTodo} setOpenModal={setOpenModal} />
         </Modal>
       )}
 
-      <CreateTodoButton
-        setOpenModal={setOpenModal}
-      />
+      <CreateTodoButton setOpenModal={setOpenModal} />
       <ChangeAlert sincronized={sincronized} />
     </>
   );
